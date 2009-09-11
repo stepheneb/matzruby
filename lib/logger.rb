@@ -170,8 +170,13 @@ require 'monitor'
 
 class Logger
   VERSION = "1.2.6"
-  id, name, rev = %w$Id$
-  ProgName = "#{name.chomp(",v")}/#{rev}"
+  svn_Id = "$Id$"
+  if svn_Id.length > 4
+    id, name, rev = %w$Id$
+    ProgName = "#{name.chomp(",v")}/#{rev}"
+  else
+    ProgName = 'logger.rb'
+  end
 
   class Error < RuntimeError; end
   class ShiftingError < Error; end
